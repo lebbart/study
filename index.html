@@ -6,13 +6,12 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 </head>
-<body ng-controller="ToDoCtrl">
+<body>
 
 <section class="page-header">
     <h1 class="project-name">Study</h1>
@@ -21,7 +20,24 @@
         knowledges and experience in front-end coding.</h2>
 </section>
 
-<section class="main-content">
+<section class="main-content" ng-controller="tabSectionController">
+
+    <div class="btn btn-default" ng-click="toggleThirdTab()">
+        {{ tabs[2].disabled ? 'Enable' : 'Disable' }} third tab
+    </div>
+    <div class="btn btn-default" ng-click="tabs.activeTab='Profile'">
+        Select "Profile" tab
+    </div>
+    <hr>
+    <!-- bsActivePane is optional -->
+    <div bs-active-pane="tabs.activeTab" bs-tabs>
+        <div ng-repeat="tab in tabs" data-title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" ng-bind="tab.content" bs-pane>
+        </div>
+    </div>
+
+
+
+
     <h3>
         <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span
                 aria-hidden="true" class="octicon octicon-link"></span></a>AngularJS</h3>
@@ -36,19 +52,22 @@
             <ul>
                 <li>Добавить light scroll</li>
                 <li>Добавить Табы и в них чет показывать</li>
-                <li>Переделать внешний вид </li>
+                <li>Переделать внешний вид</li>
             </ul>
         </li>
         <li>Добавить несколько языков - реализация</li>
         <li>Регистрация / Авторизация / Платежные системы</li>
         <li>Сделать свой сайт на AngularJS</li>
-        <li>Понять как использовать <a href="https://www.firebase.com/docs/web/libraries/angular/quickstart.html">Firebase</a></li>
+        <li>Понять как использовать <a href="https://www.firebase.com/docs/web/libraries/angular/quickstart.html">Firebase</a>
+        </li>
         <li>Приложение учета расхода топлива</li>
         <li>Приложение to do list (to learn list)</li>
         <li>
             Приложение для HR отдела, хранение/поиск/фильтрация данных о кандидатах
         </li>
-        <li>Сделать нормальное отображение данной страницы для работы в онлайн режиме, добавление, редактирование и тд, написать бэкэнд</li>
+        <li>Сделать нормальное отображение данной страницы для работы в онлайн режиме, добавление, редактирование и тд,
+            написать бэкэнд
+        </li>
     </ol>
     </p>
 
@@ -69,6 +88,7 @@
     <h3>
         <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true">
             <span aria-hidden="true" class="octicon octicon-link"></span></a>Тестирование</h3>
+
     <p>
     <ol>
         <li><a href="http://phantomjs.org/">PhantomJS</a></li>
@@ -82,14 +102,19 @@
 
     <p>
     <ol>
-        <li>Прочитать - <a href="http://bizbook.ua/kompyuternaya_literatura/programmirovanie/programmirovanie_na_php_perl/34007">Регулярные выражение - основы</a></li>
-        <li>Прочитать - <a href="http://bizbook.ua/kompyuternaya_literatura/programmirovanie/programmirovanie_na_php_perl/27984">Регулярные выражения 3-е издание</a></li>
+        <li>Прочитать - <a
+                href="http://bizbook.ua/kompyuternaya_literatura/programmirovanie/programmirovanie_na_php_perl/34007">Регулярные
+            выражение - основы</a></li>
+        <li>Прочитать - <a
+                href="http://bizbook.ua/kompyuternaya_literatura/programmirovanie/programmirovanie_na_php_perl/27984">Регулярные
+            выражения 3-е издание</a></li>
     </ol>
     </p>
 
     <h3>
         <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true">
             <span aria-hidden="true" class="octicon octicon-link"></span></a>В планах</h3>
+
     <p>
     <ol>
         <li><a href="https://lodash.com/">ReactJS</a></li>
@@ -99,51 +124,41 @@
     </ol>
     </p>
 
-
-    <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/lebbart/study">Study</a> is maintained by <a
-                href="https://github.com/lebbart">lebbart</a>.</span>
-    </footer>
-
 </section>
 
-<div class="page-header">
-    <h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>
-</div>
+<section ng-controller="ToDoCtrl">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="page-headader">
+                <h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>
+            </div>
 
-<div class="panel">
-    <div class="input-group">
-        <input class="form-control"/>
-        <span class="input-group-btn">
-            <button class="btn btn-default">Add</button>
-        </span>
-    </div>
-</div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Description</th>
-        <th>Check status</th>
-        <th>Done</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">
-        <td>{{item.action}}</td>
-        <td>
-            <input type="checkbox"
-                   ng-model="item.done"/>
-        </td>
-        <td>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Check status</th>
+                    <th>Done</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">
+                    <td>{{item.action}}</td>
+                    <td>
+                        <input type="checkbox"
+                               ng-model="item.done"/>
+                    </td>
+                    <td>
                 <span class="animate-if">
                     {{item.done}}
                 </span>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
 <script src="libs/angular/angular.js"></script>
 <script src="libs/angular-route/angular-route.js"></script>
@@ -151,6 +166,8 @@
 <script src="libs/angular-mocks/angular-mocks.js"></script>
 <script src="libs/angular-animate/angular-animate.js"></script>
 <script src="libs/angular-sanitize/angular-sanitize.js"></script>
+<script src="libs/angular-strap/dist/angular-strap.min.js"></script>
+<script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script src="main.js"></script>
 
 </body>

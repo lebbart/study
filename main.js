@@ -6,13 +6,12 @@ var todoApp = angular.module('todoApp', [
 ]);
 
 todoApp.config(function($stateProvider, $urlRouterProvider) {
-
 	$stateProvider
-			.state('mainpage',{
-				url : '/',
+			.state('start',{
+				url : '',
 				views : {
 					main : {
-						templateUrl: 'templates/main.html',
+						templateUrl : 'templates/main.html',
 						controller : 'ToDoCtrl'
 					}
 				}
@@ -21,12 +20,21 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
 				url : 'angularjs',
 				views : {
 					'main' : {
-						templateUrl: 'templates/angularjs.html',
+						templateUrl: '/templates/angularjs.html',
 						controller: 'angularConrtoller'
 					}
 				}
 			})
-			.state('testing', {
+			.state('javascript',{
+				url : 'js',
+				views : {
+					main : {
+						templateUrl: 'templates/js.html',
+						controller: 'jsController'
+					}
+				}
+			})
+			.state('testing',{
 				url : 'testing',
 				views : {
 					'main' : {
@@ -35,17 +43,8 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
 					}
 				}
 			})
-			.state('javascript',{
-				url : 'js',
-				views : {
-					main : {
-						templateUrl: 'templates/js.hmtl',
-						controller: 'jsController'
-					}
-				}
-			})
 			.state('regexp',{
-				url: 'regexp',
+				url : 'regexp',
 				views : {
 					main : {
 						templateUrl: 'templates/regexp.html',
@@ -54,7 +53,7 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
 				}
 			})
 			.state('plans',{
-				url: 'plans',
+				url : 'plans',
 				views : {
 					main : {
 						templateUrl: 'templates/plans.html',
@@ -62,7 +61,6 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
 					}
 				}
 			});
-
 	$urlRouterProvider.otherwise('/');
 });
 

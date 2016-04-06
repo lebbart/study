@@ -1,0 +1,33 @@
+<section ng-controller="ToDoCtrl">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="page-headader">
+                <h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Check status</th>
+                    <th>Done</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">
+                    <td>{{item.action}}</td>
+                    <td>
+                        <input type="checkbox"
+                               ng-model="item.done"/>
+                    </td>
+                    <td>
+                <span class="animate-if">
+                    {{item.done}}
+                </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

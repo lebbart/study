@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>How to learn correct - what should front-end developer know!</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-theme.css" rel="stylesheet">
+    <link href="stylesheets/stylesheet.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="stylesheets/github-light.css" rel="stylesheet" type="text/css" media="screen">
 </head>
 <body>
 
@@ -19,20 +18,37 @@
     <h2 class="project-tagline">This repo is for myself and some interesting things which I should do to have more
         knowledges and experience in front-end coding.</h2>
 </section>
+<div class="container">
+    <div class="col-md-12">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Study</a>
+                </div>
 
-<section class="main-content" ng-controller="tabSectionController">
-    <div class="container">
-        <div class="col-md-12">
-
-            <!-- bsActivePane is optional -->
-            <div bs-active-pane="tabs.activeTab" bs-tabs>
-                <div ng-repeat="tab in tabs"
-                     data-title="{{ tab.title }}"
-                     name="{{ tab.title }}"
-                     disabled="{{ tab.disabled }}"
-                     ng-bind="tab.content" bs-pane>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">AngularJS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li><a href="#">Тестирование</a></li>
+                        <li><a href="#">Регулярные выражения</a></li>
+                        <li><a href="#">В планах</a></li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </div>
+</div>
+
+<section class="main-content">
+    <div class="container">
+        <div class="col-md-12">
 
             <h3>
                 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span
@@ -127,46 +143,12 @@
 
 </section>
 
-<section ng-controller="ToDoCtrl">
-    <div class="container">
-        <div class="col-md-12">
-            <div class="page-headader">
-                <h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>
-            </div>
-
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Check status</th>
-                    <th>Done</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">
-                    <td>{{item.action}}</td>
-                    <td>
-                        <input type="checkbox"
-                               ng-model="item.done"/>
-                    </td>
-                    <td>
-                <span class="animate-if">
-                    {{item.done}}
-                </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
 <script src="libs/angular/angular.js"></script>
-<script src="libs/angular-route/angular-route.js"></script>
 <script src="libs/angular-touch/angular-touch.js"></script>
 <script src="libs/angular-mocks/angular-mocks.js"></script>
 <script src="libs/angular-animate/angular-animate.js"></script>
 <script src="libs/angular-sanitize/angular-sanitize.js"></script>
+<script src="libs/angular-ui-router/angular-ui-router.js"></script>
 <script src="libs/angular-strap/dist/angular-strap.min.js"></script>
 <script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script src="main.js"></script>

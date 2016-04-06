@@ -1,41 +1,13 @@
 var todoApp = angular.module('todoApp', [
 		'ngAnimate',
-		'ngRoute',
 		'mgcrea.ngStrap',
-		'mgcrea.ngStrap.tab'
+		'mgcrea.ngStrap.tab',
+		'ui.router'
 ]);
 
 todoApp.controller('ToDoCtrl', function($scope){
+
 	$scope.todo = model;
-
-});
-
-todoApp.controller('tabSectionController', function($scope) {
-
-	$scope.tabs = [
-		{
-			"title": "AngularJS",
-			"content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica."
-		},
-		{
-			"title": "JavaScript",
-			"content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
-		},
-		{
-			"title": "Тестирование",
-			"content": "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.",
-			"disabled": false
-		},
-		{
-			"title": "Регулярные выражения",
-			"content": "Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid."
-		},
-		{
-			"title": "В планах",
-			"content": "Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid."
-		}
-	];
-	$scope.tabs.activeTab = "Profile";
 
 });
 

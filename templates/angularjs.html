@@ -1,33 +1,69 @@
-<section ng-controller="ToDoCtrl">
-    <div class="container">
-        <div class="col-md-12">
-            <div class="page-headader">
-                <h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>
-            </div>
+<h3>
+    <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>AngularJS</h3>
 
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Check status</th>
-                    <th>Done</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">
-                    <td>{{item.action}}</td>
-                    <td>
-                        <input type="checkbox"
-                               ng-model="item.done"/>
-                    </td>
-                    <td>
-                <span class="animate-if">
-                    {{item.done}}
-                </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<p>
+<ol>
+    <li>AngularJS PRO - прочитать данную книгу</li>
+    <li>AngularJS 1.5.1 - разобрать что такое новое в нем (компоненты)</li>
+    <li>AngularJS 2.0 - начать учить</li>
+    <li>
+        <strike>Закончить приложение с udemy</strike> <span class="done-cl"><b>Done</b></span>
+        <ul>
+            <li>Добавить light scroll</li>
+            <li>Добавить Табы и в них чет показывать</li>
+            <li>Переделать внешний вид</li>
+        </ul>
+    </li>
+    <li>Добавить несколько языков - реализация</li>
+    <li>Регистрация / Авторизация / Платежные системы</li>
+    <li>Сделать свой сайт на AngularJS</li>
+    <li>Понять как использовать <a
+            href="https://www.firebase.com/docs/web/libraries/angular/quickstart.html">Firebase</a>
+    </li>
+    <li>Приложение учета расхода топлива</li>
+    <li>Приложение to do list (to learn list)</li>
+    <li>
+        Приложение для HR отдела, хранение/поиск/фильтрация данных о кандидатах
+    </li>
+    <li>Сделать нормальное отображение данной страницы для работы в онлайн режиме, добавление,
+        редактирование и тд,
+        написать бэкэнд
+    </li>
+</ol>
+</p>
+
+
+<!--<section ng-controller="ToDoCtrl">-->
+<!--<div class="container">-->
+<!--<div class="col-md-12">-->
+<!--<div class="page-headader">-->
+<!--<h1>{{todo.user}}'s To Do List: <span class="label label-default">{{todo.items.length}}</span></h1>-->
+<!--</div>-->
+
+<!--<table class="table table-striped">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Description</th>-->
+<!--<th>Check status</th>-->
+<!--<th>Done</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="item in todo.items" ng-class="{strike: item.done}">-->
+<!--<td>{{item.action}}</td>-->
+<!--<td>-->
+<!--<input type="checkbox"-->
+<!--ng-model="item.done"/>-->
+<!--</td>-->
+<!--<td>-->
+<!--<span class="animate-if">-->
+<!--{{item.done}}-->
+<!--</span>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+<!--</div>-->
+<!--</section>-->

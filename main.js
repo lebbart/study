@@ -71,28 +71,44 @@ todoApp.controller('ToDoCtrl', function($scope){
 
 });
 
-todoApp.controller('angularConrtoller',['$scope', '$firebaseArray', 'toaster', function($scope, $firebaseArray, toaster){
+todoApp.config(function(laddaProvider) {
+
+	laddaProvider.setOption({
+		style: 'expand-right',
+		spinnerSize: 20
+	});
+
+});
+
+todoApp.controller('angularConrtoller',['$scope', '$firebaseArray', 'toaster',
+	function($scope, $firebaseArray, toaster){
 
 	$scope.newTask = false;
 
 	var ref = new Firebase("https://listtodobogdan.firebaseio.com/");
 	$scope.rows = $firebaseArray(ref);
 
-	$scope.addTask = function(e) {
-		if (e.keyCode === 13 && $scope.task) {
-			var action = $scope.task || "Не добавил задачу";
-			$scope.rows.$add({action: action, done: false});
-			toaster.pop('success', "Task", "was added successfully");
-			$scope.task = "";
-		}
-	};
+	//$scope.addTask = function(e) {
+	//	if (e.keyCode === 13 && $scope.task) {
+	//		var action = $scope.task || "Не добавил задачу";
+	//		$scope.rows.$add({action: action, done: false});
+	//		toaster.pop('success', "Task", "was added successfully");
+	//		$scope.task = "";
+	//	}
+	//};
+
 
 	$scope.addTaskBtn = function() {
+		$scope.taskAddLoading = true;
 		var action = $scope.task || "Не добавил задачу";
-		$scope.rows.$add({action: action, done: false});
-		toaster.pop('success', "Task", "was added successfully");
+		$scope.rows.$add({action: action, done: false}).then(function(ref){
+			$scope.taskAddLoading = false;
+			var id = ref.key();
+			var index = $scope.rows.$indexFor(id);
+			toaster.pop('success', "Task id - " + index, "was added successfully");
+		});
 		$scope.task = "";
-	}
+	};
 
 }]);
 

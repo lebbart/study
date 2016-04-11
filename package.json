@@ -1,10 +1,17 @@
 {
   "name": "study",
   "version": "1.0.0",
+  "description": "Study tasks manager",
   "scripts": {
     "start": "lite-server"
   },
+  "author": "Bogdan Lebedenko",
+  "license": "ISC",
+  "repository": {},
   "devDependencies": {
     "lite-server": "^2.1.0"
+  },
+  "dependencies": {
+    "angularjs-toaster": "^1.2.1"
   }
 }

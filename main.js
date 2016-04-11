@@ -1,9 +1,10 @@
 var todoApp = angular.module('todoApp', [
-							 'ngAnimate',
-							 'mgcrea.ngStrap',
-							 'mgcrea.ngStrap.tab',
-							 'ui.router',
-							 'firebase'
+	'ngAnimate',
+	'mgcrea.ngStrap',
+	'mgcrea.ngStrap.tab',
+	'ui.router',
+	'firebase',
+	'toaster'
 ]);
 
 todoApp.config(function($stateProvider, $urlRouterProvider) {
@@ -69,11 +70,28 @@ todoApp.controller('ToDoCtrl', function($scope){
 
 });
 
-todoApp.controller('angularConrtoller',['$scope', '$firebaseArray', function($scope, $firebaseArray){
-	//$scope.todo = model;
+todoApp.controller('angularConrtoller',['$scope', '$firebaseArray', 'toaster', function($scope, $firebaseArray, toaster){
+
+	$scope.newTask = false;
 
 	var ref = new Firebase("https://listtodobogdan.firebaseio.com/");
 	$scope.rows = $firebaseArray(ref);
+
+	$scope.addTask = function(e) {
+		if (e.keyCode === 13 && $scope.task) {
+			var action = $scope.task || "Не добавил задачу";
+			$scope.rows.$add({action: action, done: false});
+			toaster.pop('success', "Task", "was added successfully");
+			$scope.task = "";
+		}
+	};
+
+	$scope.addTaskBtn = function() {
+		var action = $scope.task || "Не добавил задачу";
+		$scope.rows.$add({action: action, done: false});
+		toaster.pop('success', "Task", "was added successfully");
+		$scope.task = "";
+	}
 
 }]);
 
@@ -92,23 +110,3 @@ todoApp.controller('regexpController', function($scope){
 todoApp.controller('plansController', function($scope){
 
 });
-
-//var model = {
-//	user: "Bogdan",
-//	items: [
-//		{action: "AngularJS PRO - прочитать данную книгу", done: false},
-//		{action: "AngularJS 1.5.1 - разобрать что такое новое в нем (компоненты)", done: false},
-//		{action: "AngularJS 2.0 - начать учить", done: false},
-//		{action: "Закончить приложение с udemy Done", done: true},
-//		{action: "Добавить light scroll", done: false},
-//		{action: "Добавить Табы и в них чет показывать", done: false},
-//		{action: "Добавить несколько языков - реализация", done: false},
-//		{action: "Регистрация / Авторизация / Платежные системы", done: false},
-//		{action: "Сделать свой сайт на AngularJS", done: false},
-//		{action: "Понять как использовать Firebase", done: false},
-//		{action: "Приложение учета расхода топлива", done: false},
-//		{action: "Приложение to do list (to learn list)", done: false},
-//		{action: "Приложение для HR отдела, хранение/поиск/фильтрация данных о кандидатах", done: false},
-//		{action: "Сделать нормальное отображение данной страницы для работы в онлайн режиме, добавление, редактирование и тд, написать бэкэнд", done: false}
-//	]
-//};

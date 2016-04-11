@@ -4,7 +4,8 @@ var todoApp = angular.module('todoApp', [
 	'mgcrea.ngStrap.tab',
 	'ui.router',
 	'firebase',
-	'toaster'
+	'toaster',
+	'angular-ladda'
 ]);
 
 todoApp.config(function($stateProvider, $urlRouterProvider) {

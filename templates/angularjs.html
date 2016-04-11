@@ -41,8 +41,9 @@
     <thead>
     <tr>
         <th>Description</th>
-        <th>Check status</th>
-        <th>Done</th>
+        <th width="150">Check status</th>
+        <th width="150">Done</th>
+        <th width="150">Remove Task</th>
     </tr>
     </thead>
     <tbody>
@@ -50,15 +51,20 @@
         <td>{{item.action}}</td>
         <td>
             <input type="checkbox"
+                   ng-change="rows.$save(item)"
                    ng-model="item.done"/>
         </td>
         <td>
             <span class="animate-if">
-            {{item.done}}
+                {{item.done}}
             </span>
         </td>
         <td>
-            <a href="#" class="btn btn-danger">Remove</a>
+            <a href
+               class="btn btn-danger"
+               ladda="isRemoving"
+               ng-model="indexOfTask"
+               ng-click="removeTask()">Remove</a>
         </td>
     </tr>
     </tbody>

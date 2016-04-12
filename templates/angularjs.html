@@ -43,13 +43,13 @@
         <th>Description</th>
         <th width="150">Check status</th>
         <th width="150">Done</th>
-        <th width="150">Remove Task</th>
+        <th width="150">Remove/Edit</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in rows"
         ng-click="setSelectedRow($index)"
-        ng-class="{active: $index == idSelectedItem, success: item.done}">
+        ng-class="{active: $index == idSelectedRow, success: item.done}">
         <td>{{$index+1}}</td>
         <td>{{item.action}}</td>
         <td>
@@ -63,10 +63,16 @@
             </span>
         </td>
         <td>
-            <a href
-               class="btn btn-danger"
-               ladda="isRemoving"
-               ng-click="removeTask($index)">Remove</a>
+            <div ng-show="$index == idSelectedRow">
+                <a href
+                   class="btn btn-danger btn-xs"
+                   ladda="isRemoving"
+                   ng-click="removeTask($index)"><span class="fa fa-trash-o"></span> Remove</a>
+                <a href
+                   class="btn btn-warning btn-xs"
+                   ladda="isEditing"
+                   ng-click="editTask($index)"><span class="fa fa-pencil"></span> Edit</a>
+            </div>
         </td>
     </tr>
     </tbody>

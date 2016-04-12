@@ -95,14 +95,14 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
             $scope.idSelectedRow = idSelectedItem;
         };
 
-        //$scope.addTask = function(e) {
-        //	if (e.keyCode === 13 && $scope.task) {
-        //		var action = $scope.task || "Не добавил задачу";
-        //		$scope.rows.$add({action: action, done: false});
-        //		toaster.pop('success', "Task", "was added successfully");
-        //		$scope.task = "";
-        //	}
-        //};
+        $scope.addTaskEnter = function(e) {
+        	if (e.keyCode === 13 && $scope.task) {
+        		var action = $scope.task || "Не добавил задачу";
+        		$scope.rows.$add({action: action, done: false});
+        		toaster.pop('success', "Task", "was added successfully");
+        		$scope.task = "";
+        	}
+        };
 
         $scope.addTaskBtn = function () {
             $scope.taskAddLoading = true;

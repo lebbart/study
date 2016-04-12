@@ -24,7 +24,7 @@ todoApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/',
             views: {
                 'main': {
-                    templateUrl: '/templates/angularjs.html',
+                    templateUrl: 'templates/angularjs.html',
                     controller: 'angularConrtoller'
                 }
             }

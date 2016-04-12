@@ -86,9 +86,14 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
 
         $scope.newTask = false;
 
-
         var ref = new Firebase("https://listtodobogdan.firebaseio.com/");
         $scope.rows = $firebaseArray(ref);
+
+        $scope.idSelectedRow = null;
+
+        $scope.setSelectedRow = function(idSelectedItem) {
+            $scope.idSelectedRow = idSelectedItem;
+        };
 
         //$scope.addTask = function(e) {
         //	if (e.keyCode === 13 && $scope.task) {
@@ -111,23 +116,20 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
             $scope.task = "";
         };
 
-
-
-
-        $scope.removeTask = function () {
+        $scope.removeTask = function ($id) {
             $scope.isRemoving = true;
+
+            var item = $scope.rows[$id];
 
             $scope.rows.$remove(item).then(function(ref) {
                 ref.key() === item.$id; // true
                 $scope.isRemoving = false;
+                toaster.pop('success', "Task id - " + $id, "was removed successfully");
             });
 
 
 
         };
-
-
-
 
     }]);
 

@@ -49,9 +49,10 @@
     <tbody>
     <tr ng-repeat="item in rows"
         ng-click="setSelectedRow($index)"
-        ng-class="{active: $index == idSelectedRow, success: item.done}">
+        ng-class="{active: $index == idSelectedRow, success: item.done}"
+        class="study-table-string">
         <td>{{$index+1}}</td>
-        <td>{{item.action}}</td>
+        <td><input type="text" ng-model="item.action"/>{{item.action}}</td>
         <td>
             <input type="checkbox"
                    ng-change="rows.$save(item)"
@@ -70,8 +71,9 @@
                    ng-click="removeTask($index)"><span class="fa fa-trash-o"></span> Remove</a>
                 <a href
                    class="btn btn-warning btn-xs"
-                   ladda="isEditing"
-                   ng-click="editTask($index)"><span class="fa fa-pencil"></span> Edit</a>
+                   data-animation="am-fade-and-scale"
+                   data-placement="center"
+                   ng-click="showEditInput($index)"><span class="fa fa-pencil"></span> Edit</a>
             </div>
         </td>
     </tr>

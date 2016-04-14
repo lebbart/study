@@ -73,16 +73,14 @@ todoApp.controller('ToDoCtrl', function ($scope) {
 });
 
 todoApp.config(function (laddaProvider) {
-
     laddaProvider.setOption({
         style: 'expand-right',
         spinnerSize: 20
     });
-
 });
 
-todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
-    function ($scope, $firebaseArray, toaster) {
+todoApp.controller('angularConrtoller', ['$scope', '$window', '$firebaseArray', 'toaster', '$modal',
+    function ($scope, $window, $firebaseArray, toaster, $modal) {
 
         $scope.newTask = false;
 
@@ -90,14 +88,17 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
         $scope.rows = $firebaseArray(ref);
 
         $scope.idSelectedRow = null;
-
         $scope.setSelectedRow = function(idSelectedItem) {
             $scope.idSelectedRow = idSelectedItem;
         };
 
+        //$window.onclick = function() {
+        //    $scope.idSelectedRow = null;
+        //};
+
         $scope.addTaskEnter = function(e) {
         	if (e.keyCode === 13 && $scope.task) {
-        		var action = $scope.task || "Не добавил задачу";
+        		var action = $scope.task || "Not added any task";
         		$scope.rows.$add({action: action, done: false});
         		toaster.pop('success', "Task", "was added successfully");
         		$scope.task = "";
@@ -106,7 +107,7 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
 
         $scope.addTaskBtn = function () {
             $scope.taskAddLoading = true;
-            var action = $scope.task || "Не добавил задачу";
+            var action = $scope.task || "Not added any task";
             $scope.rows.$add({action: action, done: false}).then(function (ref) {
                 $scope.taskAddLoading = false;
                 var id = ref.key();
@@ -118,16 +119,32 @@ todoApp.controller('angularConrtoller', ['$scope', '$firebaseArray', 'toaster',
 
         $scope.removeTask = function ($id) {
             $scope.isRemoving = true;
-
             var item = $scope.rows[$id];
-
             $scope.rows.$remove(item).then(function(ref) {
                 ref.key() === item.$id; // true
                 $scope.isRemoving = false;
                 toaster.pop('success', "Task id - " + $id, "was removed successfully");
             });
+        };
 
+        //$scope.showEditModal = function($taskId) {
+        //    $scope.updateModal = $modal({
+        //        scope: $scope,
+        //        templateUrl: 'templates/modal-edit-task.html',
+        //        show: true
+        //    });
+        //};
 
+        $scope.editTask = function($taskId) {
+            $scope.isSaving = true;
+
+            $scope.rows[$taskId].foo = "bar";
+            $scope.rows.$save($taskId).then(function(ref) {
+
+                $scope.isSaving = false;
+                ref.key() === list[$taskId].$id; // true
+
+            });
 
         };
 
